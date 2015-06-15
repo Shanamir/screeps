@@ -1,5 +1,7 @@
 module.exports = function (creep) 
 {
+    if (!Memory.roads)
+        Memory.roads = new Object();
 	var road = creep.room.find(FIND_CONSTRUCTION_SITES, {filter: {structureType : STRUCTURE_ROAD, my : true, pos : creep.pos}});
 	if (road)
 	{
