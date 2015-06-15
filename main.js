@@ -24,15 +24,11 @@ for (var i in Game.creeps)
 
 for (var i in Memory.roads)
 {
-//    console.log(i);
-//    console.log(Memory.roads[i]);
     if (Memory.roads[i] > 3)
     {
-        console.log(i);
-        console.log(i.room);
-        console.log(i.x);
-        //Game.rooms[i.roomName].createConstructionSite(i, STRUCTURE_ROAD);
-        //delete Memory.roads[i];
+		//console.log(Memory.roadsid[i].roomName);
+		Game.rooms[Memory.roadsid[i].roomName].createConstructionSite(Memory.roadsid[i].x, Memory.roadsid[i].y, STRUCTURE_ROAD);
+        delete Memory.roads[i];
     }
 }
 
