@@ -34,6 +34,20 @@ for (var i in Memory.roads)
 
 while(totalHarvesters < 4) 
 {
-		var newCreep = Game.spawns.Spawn1.createCreep([WORK, CARRY, MOVE], '' , { role: 'harvester'});
+		Game.spawns.Spawn1.createCreep([WORK, CARRY, MOVE], '' , { role: 'harvester'});
 		totalHarvesters++;
+}
+
+var construction = Game.spawns.Spawn1.room.find(FIND_CONSTRUCTION_SITES, {filter: {my : true}});
+
+var neededBuilers = 1;
+
+if (totalBuilders != 0 && construction.length / totalBuilders >= 10)
+{
+    neededBuilers = Math.floor(construction.length / 10);
+}
+
+if (neededBuilers < 1 && construction.length > 0)
+{
+	Game.spawns.Spawn1.createCreep([WORK, WORK, CARRY, MOVE], '', { role: 'builder'});
 }
