@@ -4,8 +4,9 @@ module.exports = function (creep) {
 		Game.spawns.Spawn1.transferEnergy(creep);
 	}
 	else {
-		var target = creep.pos.findNearest(Game.CONSTRUCTION_SITES);
-		if(target) {
+		var target = creep.pos.findClosest(FIND_CONSTRUCTION_SITES);
+		if(target) 
+		{
 			creep.moveTo(target);
 			creep.build(target);
 		}
