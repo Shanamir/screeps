@@ -6,9 +6,9 @@ module.exports = function (creep)
 		Memory.roadsid = new Object();
 	}
 	var road = creep.room.find(FIND_CONSTRUCTION_SITES, {filter: {structureType : STRUCTURE_ROAD, my : true, pos : creep.pos}});
-	if (road)
+	if (road.length == 0)
 	{
-		//x * X + y - уникальный идентификатор ячейки в комнате, X =48, Y = 48, т.е. 19,21 = 933
+		//x * X + y - unique identifier point in room, X =48, Y = 48, ГІ.ГҐ. 19,21 = 933
 		var id = (creep.pos.x * 48 + creep.pos.y);
 		if (id in Memory.roads)
 		{
