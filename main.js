@@ -14,12 +14,12 @@ var setRoadPoint = require('SetRoadPoint');
 
 for (var i in Game.creeps)
 {
-//    var creep = Game.creeps[i];
     if (Game.creeps[i].memory.role == 'harvester')
     {
         totalHarvesters++;
         harvester(Game.creeps[i]);
-        setRoadPoint(Game.creeps[i]);
+		if (Game.creeps[i].room.controller.my && Game.creeps[i].room.controller.level >=3)
+			setRoadPoint(Game.creeps[i]);
     }
     
 	if (Game.creeps[i].memory.role == 'builder') 
@@ -33,7 +33,7 @@ for (var i in Memory.roads)
 {
     if (Memory.roads[i] > 3)
     {
-	Game.rooms[Memory.roadsid[i].roomName].createConstructionSite(Memory.roadsid[i].x, Memory.roadsid[i].y, STRUCTURE_ROAD);
+		Game.rooms[Memory.roadsid[i].roomName].createConstructionSite(Memory.roadsid[i].x, Memory.roadsid[i].y, STRUCTURE_ROAD);
         delete Memory.roads[i];
     }
 }

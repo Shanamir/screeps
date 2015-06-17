@@ -8,8 +8,8 @@ module.exports = function (creep)
 	var road = creep.room.find(FIND_CONSTRUCTION_SITES, {filter: {structureType : STRUCTURE_ROAD, my : true, pos : creep.pos}});
 	if (road.length == 0)
 	{
-		//x * X + y - unique identifier point in room, X =48, Y = 48, ò.å. 19,21 = 933
-		var id = (creep.pos.x * 48 + creep.pos.y);
+		//y * sizeX + x - unique identifier point in room, X = 50, Y = 50, so 19,21 = 1069
+		var id = (creep.pos.y * 50 + creep.pos.x);
 		if (id in Memory.roads)
 		{
 			Memory.roads[id] = Memory.roads[id] + 1;
@@ -20,8 +20,4 @@ module.exports = function (creep)
 			Memory.roads[id] = 1;
 		}
 	}
-	
-	// test
-	//if (creep.name == "Jasmine")
-	//    console.log(Memory.roads[creep.pos]);
 }
