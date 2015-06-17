@@ -7,13 +7,25 @@ module.exports = function (creep)
     }
 	else
 	{
-		if(creep.energy == 0)
-		{
-			var source = creep.pos.findClosest(FIND_SOURCES);
+	    var source = creep.pos.findClosest(FIND_SOURCES);
+	    // 1. Если энергии 0, то идём собирать энергию
+	    // 2. Если энергия не полная, но мы рядом с контроллером - отдаём ему
+	    // 3. Если энергия не полная, и рядом нет контроллера - собираем энергию до полной загрузки
+	    if (creep.energy == 0)
+	    {
+            creep.moveTo(source);
+            creep.harvest(source);
+	    }
+	    else if (creep.energy < creep.energyCapacity && creep.pos.isNearTo(creep.room.controller))
+	    {
+	        creep.upgradeController(creep.room.controller);
+	    }
+	    else if (creep.energy < creep.energyCapacity)
+	    {
 			creep.moveTo(source);
 			creep.harvest(source);
-		}
-		else 
+	    }
+	    else
 		{
 			if (!creep.pos.isNearTo(creep.room.controller))
 			{
@@ -27,7 +39,6 @@ module.exports = function (creep)
     			    creep.upgradeController(creep.room.controller);
     			}
 			}
-			
 		}
 	}
 }
