@@ -12,6 +12,7 @@ var neededBuilers = 1;
 var harvester = require('harvester');
 var builder = require('builder');
 var setRoadPoint = require('SetRoadPoint');
+var controllerServant = require('controllerServant');
 
 for (var i in Game.creeps)
 {
@@ -55,7 +56,7 @@ if(totalHarvesters < 4)
 	totalHarvesters++;
 }
 
-if (!room.controller.my && servants == 0 && totalHarvesters > 0)
+if (!Game.spawns.Spawn1.room.controller.my && servants == 0 && totalHarvesters > 0)
     Game.spawns.Spawn1.createCreep([WORK, CARRY, MOVE], '', { role: 'controllerServant'});
 
 var construction = Game.spawns.Spawn1.room.find(FIND_CONSTRUCTION_SITES, {filter: {my : true}});
@@ -69,3 +70,4 @@ if (totalBuilders < neededBuilers && construction.length > 0)
 {
 	Game.spawns.Spawn1.createCreep([WORK, WORK, CARRY, MOVE], '', { role: 'builder'});
 }
+
