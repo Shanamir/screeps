@@ -51,9 +51,11 @@ if(totalHarvesters < 4)
 	for(i in Game.spawns)
 	{
 		Game.spawns[i].createCreep([WORK, CARRY, MOVE], '' , { role: 'harvester'});
-		break;
+		totalHarvesters++;
+		if (totalHarvesters >= 4)
+		    break;
 	}
-	totalHarvesters++;
+	
 }
 
 if (!Game.spawns.Spawn1.room.controller.my && servants == 0 && totalHarvesters > 0)
