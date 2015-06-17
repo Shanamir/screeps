@@ -1,5 +1,7 @@
 module.exports = function (creep) 
 {
+    if (!creep.room.controller.my || creep.room.controller.level < 3)
+        return;
     if (!Memory.roads)
 	{
         Memory.roads = new Object();
