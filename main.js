@@ -69,3 +69,5 @@ if (totalBuilders < neededBuilers && construction.length > 0)
 {
 	Game.spawns.Spawn1.createCreep([WORK, WORK, CARRY, MOVE], '', { role: 'builder'});
 }
+
+Here is Left Code, which make this script unworked! Bugaga! And I not place a newline char!!!
