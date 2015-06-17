@@ -45,9 +45,13 @@ for (var i in Memory.roads)
     }
 }
 
-while(totalHarvesters < 4) 
+if(totalHarvesters < 4) 
 {
-	Game.spawns.Spawn1.createCreep([WORK, CARRY, MOVE], '' , { role: 'harvester'});
+	for(i in Game.spawns)
+	{
+		Game.spawns[i].createCreep([WORK, CARRY, MOVE], '' , { role: 'harvester'});
+		break;
+	}
 	totalHarvesters++;
 }
 
