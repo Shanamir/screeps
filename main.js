@@ -65,5 +65,3 @@ for (var i in Game.spawns)
 			Game.spawns.Spawn1.createCreep([WORK, WORK, CARRY, MOVE], '', { role: 'builder'});
     }
 }
-
-// test
