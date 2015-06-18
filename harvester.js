@@ -4,7 +4,7 @@ module.exports = function (creep)
 	{
 		var source = creep.pos.findClosest(FIND_SOURCES);
 		if (!creep.pos.isNearTo(source))
-			creep.moveTo(source);
+		    creep.moveTo(source);
 		creep.harvest(source);
 	}
 	else 
@@ -16,8 +16,22 @@ module.exports = function (creep)
 		        return object.energy < object.energyCapacity
 		    }
 		});
+		if (!spawn)
+		{
+		    var nearestbuilder = creep.pos.findClosest(FIND_MY_CREEPS, {
+		        filter: function(object) {
+		            return object.memory.role == "builder";
+		        }
+	        });
+	        if (nearestbuilder)
+	        {
+        		if (!creep.pos.isNearTo(nearestbuilder))
+        		    creep.moveTo(nearestbuilder);
+        		creep.transferEnergy(nearestbuilder);
+	        }
+		}
 		if (!creep.pos.isNearTo(spawn))
-			creep.moveTo(spawn);
+		    creep.moveTo(spawn);
 		creep.transferEnergy(spawn);
 	}
 }

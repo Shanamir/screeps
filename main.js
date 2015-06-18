@@ -1,7 +1,8 @@
 Creep.prototype.findConstructionSite = function()
 {
 	var target = this.pos.findClosest(FIND_CONSTRUCTION_SITES, {filter: {my : true}});
-	this.memory.target = target.id;
+	if (target)
+	    this.memory.target = target.id;
 }
 
 var totalHarvesters = 0;
@@ -63,5 +64,22 @@ for (var i in Game.spawns)
 			Game.spawns[i].createCreep([WORK, CARRY, MOVE], '', { role: 'controllerServant'});
 		else if (totalBuilders < neededBuilders && construction.length > 0 && Game.spawns[i].canCreateCreep([WORK, WORK, CARRY, MOVE]) == OK)
 			Game.spawns.Spawn1.createCreep([WORK, WORK, CARRY, MOVE], '', { role: 'builder'});
+    }
+    
+    if (Game.spawns[i].energy == Game.spawns[i].energyCapacity 
+        && Game.spawns[i].room.controller.my 
+        && Game.spawns[i].room.controller.level >= 2)
+    {
+        for (var f in Game.flags)
+        {
+            if (Game.flags[f].room == Game.spawns[i].room && Game.flags[f].color == COLOR_YELLOW)
+            {
+                var position = Game.flags[f].pos;
+                Game.flags[f].remove();
+                Game.spawns[i].room.createConstructionSite(position, STRUCTURE_EXTENSION);
+            }
+            
+        }
+        
     }
 }
